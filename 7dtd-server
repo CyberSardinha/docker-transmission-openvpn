@@ -1,0 +1,19 @@
+  
+#!/bin/bash
+
+_term() {
+  7dtd-shutdown
+}
+
+trap _term SIGTERM
+
+./7DaysToDieServer.x86_64 \
+  -logfile /dev/stdout \
+  -configfile=serverconfig2.xml \
+  -quit \
+  -batchmode \
+  -nographics \
+  -dedicated &
+
+child=$!
+wait "$child"
